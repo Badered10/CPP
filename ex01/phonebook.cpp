@@ -51,17 +51,21 @@ std::string get_input(std::string message)
     return (line);
 }
 
-
-int main()
+void    intractive_mode(void)
 {
     std::string line;
     PhoneBook phone;
     while (1)
     {
         line = get_input("Enter :");
+
         if(!std::strcmp("ADD", line.c_str()))
         {
             Contact con;
+            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
+            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
+            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
+            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
             con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
             phone.add_contact(con);
         }
@@ -75,5 +79,10 @@ int main()
         if (std::strcmp("", str.c_str()))
             std::cout << str << std::endl;
     }
+}
+
+int main()
+{
+    intractive_mode();
     return (0);
 }
