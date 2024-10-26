@@ -44,8 +44,14 @@ void    show_table(PhoneBook phone)
 }
 void        Contact::list_elements(int elements_num)
 {
+    std::string str;
+
     for (int i = 0; i < elements_num; i++)
-        std::cout << get_element(i) << std::endl;
+    {
+        str = get_element(i);
+        if (*str.c_str())
+            std::cout << str << std::endl;
+    }
 }
 void PhoneBook::add_contact(Contact new_contact)
 {
@@ -63,9 +69,10 @@ void PhoneBook::add_contact(Contact new_contact)
 
 Contact PhoneBook::get_contact(int pose)
 {
+    Contact con;
     if (pose >= 0 && pose <= 7)
-        return(contact[pose]);
-    return err;
+        return (contact[pose]);
+    return con;
 }
 
 void Contact::add_element(std::string data, int pose)
@@ -99,6 +106,8 @@ std::string get_input(std::string message)
     {
         std::cout <<  message;
         std::getline(std::cin, line);
+        if (std::cin.eof())
+            exit (0);
     }
     return (line);
 }
