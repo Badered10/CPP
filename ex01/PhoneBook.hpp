@@ -1,12 +1,8 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#ifndef ACTIVE
-#define ACTIVE 1
-#endif
-
-#ifndef INACTIVE
-#define INACTIVE 0
+#ifndef ALL
+#define ALL 5
 #endif
 
 
@@ -21,7 +17,7 @@ private:
 public:
     enum info_id
     {
-        FIRST_NAME = 1,
+        FIRST_NAME = 0,
         LAST_NAME,
         NICKNAME,
         PHONE_NUMBER,
@@ -29,6 +25,7 @@ public:
     };
     void        add_element(std::string data, int pose);
     std::string get_element(int pose);
+    void        list_elements(int elements_num);
 };
 
 class PhoneBook
@@ -36,7 +33,7 @@ class PhoneBook
 private:
     Contact contact[8];
 public:
-    void add_contact(Contact new_contact);
+    void    add_contact(Contact new_contact);
     Contact get_contact(int pose);
     Contact err;
 };

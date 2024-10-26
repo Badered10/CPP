@@ -4,26 +4,67 @@
 #include <iostream>
 #include <string>
 #include <cctype>
+#include <iomanip>
 
 
-bool    not_all_space(char *str)
+bool    all_digits(char *str)
+{
+    while (isdigit(*str))
+        str++;
+    return (!(*str));
+}
+
+bool    all_spaces(char *str)
 {
     while (isspace(*str))
         str++;
-    return (*str);
+    return (!(*str));
 }
 
+void    show_table(PhoneBook phone)
+{
+    for (int i = 0; i < 8 ; i++)
+    {
+        std::cout << i << std::setw(9) << "";
+        for (int j = 0; j < 3; j++)
+        {
+            size_t len;
+
+            len = strlen(phone.get_contact(i).get_element(j).c_str());
+            if (len > 10)
+            {
+                std::cout << "|" << phone.get_contact(i).get_element(j).substr(0, 9) << ".";
+            }
+            else
+                std::cout << "|"  << phone.get_contact(i).get_element(j) << std::setw(10 - len) << "";
+        }
+        std::cout << "|";
+        std::cout << std::endl;
+    }  
+}
+void        Contact::list_elements(int elements_num)
+{
+    for (int i = 0; i < elements_num; i++)
+        std::cout << get_element(i) << std::endl;
+}
 void PhoneBook::add_contact(Contact new_contact)
 {
-    for (int i = 0; i < 7; i++)
-        PhoneBook::contact[i] = PhoneBook::contact[i + 1];
-    PhoneBook::contact[7] = new_contact;
+    int i = 0;
+
+    for (i = 0; i < 8 && *contact[i].get_element(0).c_str(); i++);
+    if (i == 8)
+    {
+        for (int i = 0; i < 7; i++)
+            contact[i] = contact[i + 1];
+        i = 7;
+    }
+    contact[i] = new_contact;
 }
 
 Contact PhoneBook::get_contact(int pose)
 {
     if (pose >= 0 && pose <= 7)
-        return(PhoneBook::contact[pose]);
+        return(contact[pose]);
     return err;
 }
 
@@ -35,20 +76,57 @@ void Contact::add_element(std::string data, int pose)
 }
 std::string Contact::get_element(int pose)
 {
-    if (pose >= 0 && pose <= 7)
+    if (pose >= FIRST_NAME && pose <= DARKEST_SECRET)
         return (infos[pose]);
     return (NULL);
 }
 
-std::string get_input(std::string message)
+std::string get_number(std::string message)
 {
     std::string line;
-    while (!not_all_space((char *)line.c_str()))
+    while (all_spaces((char *)line.c_str()) || !all_digits((char *)line.c_str()))
     {
         std::cout <<  message;
         std::getline(std::cin, line);
     }
     return (line);
+}
+
+std::string get_input(std::string message)
+{
+    std::string line;
+    while (all_spaces((char *)line.c_str()))
+    {
+        std::cout <<  message;
+        std::getline(std::cin, line);
+    }
+    return (line);
+}
+
+void    add(PhoneBook *phone)
+{
+    Contact con;
+
+    con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
+    con.add_element(get_input("Enter last name : "), Contact::LAST_NAME);
+    con.add_element(get_input("Enter nickname : "), Contact::NICKNAME);
+    con.add_element(get_number("Enter phone number : "), Contact::PHONE_NUMBER);
+    con.add_element(get_input("Enter darkest secret : "), Contact::DARKEST_SECRET);
+    phone->add_contact(con);
+}
+
+void    search(PhoneBook phone)
+{
+    std::string line;
+    int         num;
+
+    show_table(phone);
+    line = get_input("Enter index to see more details : ");
+    num = atoi(line.c_str());
+    if (num <= 7 && num >= 0)
+        phone.get_contact(num).list_elements(ALL);
+    else
+        std::cout << "Invlid index" << std::endl;
 }
 
 void    intractive_mode(void)
@@ -60,24 +138,11 @@ void    intractive_mode(void)
         line = get_input("Enter :");
 
         if(!std::strcmp("ADD", line.c_str()))
-        {
-            Contact con;
-            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-            phone.add_contact(con);
-        }
+            add(&phone);
+        else if (!std::strcmp("SEARCH", line.c_str()))
+            search(phone);
         else if (!std::strcmp("EXIT", line.c_str()))
             break;
-    }
-    for(int i = 0; i < 8; i++)
-    {
-        std::string str;
-        str =  phone.get_contact(i).get_element(Contact::FIRST_NAME);
-        if (std::strcmp("", str.c_str()))
-            std::cout << str << std::endl;
     }
 }
 
