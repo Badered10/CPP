@@ -11,15 +11,13 @@
 
 
 #include <string>
+#include <cctype>
+
 
 class Contact // first name, last name, nickname, phone number, darkest secret
 {
 private:
-    std::string first_name;
-    std::string last_name;
-    std::string nickname;
-    std::string phone_number;
-    std::string darkest_secret;
+    std::string infos[5];
 public:
     enum info_id
     {
@@ -29,8 +27,8 @@ public:
         PHONE_NUMBER,
         DARKEST_SECRET
     };
-    void        add_element(std::string infos, int id);
-    std::string get_element(int id);
+    void        add_element(std::string data, int pose);
+    std::string get_element(int pose);
 };
 
 class PhoneBook

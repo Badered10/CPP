@@ -3,7 +3,15 @@
 #include <ios>
 #include <iostream>
 #include <string>
+#include <cctype>
 
+
+bool    not_all_space(char *str)
+{
+    while (isspace(*str))
+        str++;
+    return (*str);
+}
 
 void PhoneBook::add_contact(Contact new_contact)
 {
@@ -19,53 +27,30 @@ Contact PhoneBook::get_contact(int pose)
     return err;
 }
 
-void Contact::add_element(std::string infos, int id)
+void Contact::add_element(std::string data, int pose)
 {
-    switch (id)
-    {
-        case FIRST_NAME:
-            first_name = infos;
-            break;
-        case LAST_NAME:
-            last_name = infos;
-            break;
-        case NICKNAME:
-            nickname = infos;
-            break;
-        case PHONE_NUMBER:
-            phone_number = infos;
-            break;
-        case DARKEST_SECRET:
-            darkest_secret = infos;
-            break;    
-    default:
-        break;
-    }
+    if (pose >= 0 && pose <= 7)
+        infos[pose] = data;
+
 }
-std::string Contact::get_element(int id)
+std::string Contact::get_element(int pose)
 {
-    switch (id)
-    {
-        case FIRST_NAME:
-            return (first_name);
-            break;
-        case LAST_NAME:
-            return (last_name);
-            break;
-        case NICKNAME:
-            return (nickname);
-            break;
-        case PHONE_NUMBER:
-            return (phone_number);
-            break;
-        case DARKEST_SECRET:
-            return (darkest_secret);
-            break;    
-    default:
-        return("");
-        break;
-    }
+    if (pose >= 0 && pose <= 7)
+        return (infos[pose]);
+    return (NULL);
 }
+
+std::string get_input(std::string message)
+{
+    std::string line;
+    while (!not_all_space((char *)line.c_str()))
+    {
+        std::cout <<  message;
+        std::getline(std::cin, line);
+    }
+    return (line);
+}
+
 
 int main()
 {
@@ -73,14 +58,11 @@ int main()
     PhoneBook phone;
     while (1)
     {
-        std::cout << "Enter : ";
-        std::getline(std::cin, line);
+        line = get_input("Enter :");
         if(!std::strcmp("ADD", line.c_str()))
         {
             Contact con;
-            std::cout << "Enter FIRST NAME : ";
-            std::getline(std::cin, line);
-            con.add_element(line, Contact::FIRST_NAME);
+            con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
             phone.add_contact(con);
         }
         else if (!std::strcmp("EXIT", line.c_str()))
