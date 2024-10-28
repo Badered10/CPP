@@ -101,7 +101,7 @@ void Account::	displayAccountsInfos( void )
             std::cout << "p_amount:" << accountAmounts[i] << ";"
                     << "deposit:" << deposits[i] << ";"
                     << "amount:" << accountAmounts[i] + deposits[i] << ";"
-                    << "nb_deposits:" << deposits_nb[i];
+                    << "nb_deposits:" << 4[i];
             
             accountAmounts[i] += deposits[i];
         }
