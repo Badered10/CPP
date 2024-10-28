@@ -7,8 +7,8 @@
 #include <ctime>
 #include <iomanip>
 
-int old_dp = 0;
-int old_wh = 0;
+
+int counter = 0;
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -63,6 +63,7 @@ void	Account::makeDeposit( int deposit )
     _amount += deposit;
     _totalAmount += deposit;
     deposits.push_back(deposit); 
+
 }
 
 bool	Account::makeWithdrawal( int withdrawal )
@@ -81,20 +82,18 @@ bool	Account::makeWithdrawal( int withdrawal )
 }
 void Account::	displayAccountsInfos( void )
 {
-    for (int i = 0; i < getNbAccounts(); i++)
+    for (int i = 0; i < getNbAccounts() &&( getNbDeposits() || getNbWithdrawals()); i++)
     {
         Account::_displayTimestamp();
 
         std::cout  << " index:" << i << ";";
 
-        if (!getNbDeposits() && !getNbWithdrawals())
-            std::cout << "amount:" << accountAmounts[i] << ";" << "created";
-        else if (getNbDeposits() && !getNbWithdrawals())
+        if (getNbDeposits() && !getNbWithdrawals())
         {
             std::cout << "p_amount:" << accountAmounts[i] << ";"
                     << "deposit:" << deposits[i] << ";"
                     << "amount:" << accountAmounts[i] + deposits[i] << ";"
-                    << "nb_deposits:" << getNbDeposits();
+                    << "nb_deposits:" << 1;
             
             accountAmounts[i] += deposits[i];
         }
@@ -108,7 +107,7 @@ void Account::	displayAccountsInfos( void )
             {
                 std::cout << "withdrawal:" << Withdrawals[i] << ";"
                         << "amount:" << accountAmounts[i] - Withdrawals[i] << ";"
-                        << "nb_deposits:" << getNbWithdrawals();
+                        << "nb_deposits:" << 1;
 
                 accountAmounts[i] -= Withdrawals[i];
             }
@@ -125,19 +124,27 @@ void Account::	displayAccountsInfos( void )
 }
 Account::Account( void )
 {
-    // std::cout << "constructur 1 called !\n";
 }
 Account::Account( int initial_deposit )
 {
-    // std::cout << "constructur 2 called !\n";
-
     _amount = initial_deposit;
     _totalAmount+=_amount;
     _nbAccounts++;
     accountAmounts.push_back(_amount); 
+    _accountIndex = counter;
+    counter++;
+
+    Account::_displayTimestamp();
+    std::cout  << " index:" << _accountIndex << ";";
+    std::cout << "amount:" << accountAmounts[_accountIndex] << ";" << "created\n";
 }
 Account::~Account( void )
 {
+    Account::_displayTimestamp();
+
+    std::cout  << " index:" << _accountIndex << ";";
+
+    std::cout << "amount:" << accountAmounts[_accountIndex] << ";" << "closed\n";
 }
 
 // int main()

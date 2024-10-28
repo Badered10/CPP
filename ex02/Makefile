@@ -1,23 +1,24 @@
 
-CC = c++
+CC := c++
 
-CPPGLAGS = -Wall -Wextra -Werror
+CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
-SRCS = Account.cpp tests.cpp
+NAME :=	Account
 
-OBJS = $(SRCS:.cpp=.o)
+SRCS :=  Account.cpp tests.cpp
 
-NAME = Account
+OBJS := $(SRCS:.cpp=.o)
+
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-	$(CC) $(CPPGLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(CPPFLAGS) $(OBJS) -o $(NAME)
 
-clean : 
+clean :
 	rm -rf $(OBJS)
 
-fclean :clean
+fclean : clean
 	rm -rf $(NAME)
 
 re : fclean all
