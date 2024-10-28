@@ -1,36 +1,31 @@
 #ifndef PHONEBOOK_HPP
 #define PHONEBOOK_HPP
 
-#ifndef ACTIVE
-#define ACTIVE 1
-#endif
-
-#ifndef INACTIVE
-#define INACTIVE 0
+#ifndef ALL
+#define ALL 5
 #endif
 
 
 #include <string>
+#include <cctype>
+
 
 class Contact // first name, last name, nickname, phone number, darkest secret
 {
 private:
-    std::string first_name;
-    std::string last_name;
-    std::string nickname;
-    std::string phone_number;
-    std::string darkest_secret;
+    std::string infos[5];
 public:
     enum info_id
     {
-        FIRST_NAME = 1,
+        FIRST_NAME = 0,
         LAST_NAME,
         NICKNAME,
         PHONE_NUMBER,
         DARKEST_SECRET
     };
-    void        add_element(std::string infos, int id);
-    std::string get_element(int id);
+    void        add_element(std::string data, int pose);
+    std::string get_element(int pose);
+    void        list_elements(int elements_num);
 };
 
 class PhoneBook
@@ -38,9 +33,8 @@ class PhoneBook
 private:
     Contact contact[8];
 public:
-    void add_contact(Contact new_contact);
+    void    add_contact(Contact new_contact);
     Contact get_contact(int pose);
-    Contact err;
 };
 
 #endif
