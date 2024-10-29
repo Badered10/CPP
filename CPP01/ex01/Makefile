@@ -4,7 +4,7 @@ CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
 NAME =  Moar_brainz!
 
-SRCS = main.cpp Zombie.cpp
+SRCS = main.cpp Zombie.cpp zombieHorde.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 

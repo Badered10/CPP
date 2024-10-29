@@ -1,28 +1,21 @@
 
 #include <iostream>
-
-class Zombie
-{
-private:
-    std::string name;
-public:
-    void announce( void );
-    Zombie(void);
-    Zombie(std::string str);
-    ~Zombie(void);
-};
+#include "Zombie.hpp"
 
 Zombie::Zombie(std::string str)
 {
     name = str;
 }
+
 Zombie::Zombie (void)
 {
 }
+
 Zombie::~Zombie(void)
 {
     std::cout << name << ": Has been cleaned up !" << std::endl;
 }
+
 void Zombie::announce( void )
 {
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;

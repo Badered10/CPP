@@ -1,15 +1,10 @@
 
 #include <iostream>
+#include "Zombie.hpp"
 
-class Zombie
+Zombie::Zombie(void)
 {
-private:
-    std::string name;
-public:
-    void announce( void );
-    Zombie(std::string str);
-    ~Zombie(void);
-};
+}
 
 Zombie::Zombie(std::string str)
 {
@@ -24,3 +19,4 @@ void Zombie::announce( void )
 {
     std::cout << name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
+
