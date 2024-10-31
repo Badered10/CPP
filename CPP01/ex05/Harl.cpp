@@ -39,13 +39,13 @@ void Harl::complain( std::string level )
 {
     std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
-    select array[] = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+    select PtrsToMember[] = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
 
     for (int i = 0; i < 4 ; i++)
     {
         if (level == levels[i])
         {
-            CALL_MEMBER_FN(this,array[i]);
+            CALL_MEMBER_FN(this,PtrsToMember[i]);
             return ;
         }
     }

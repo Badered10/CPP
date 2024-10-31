@@ -17,6 +17,7 @@ public:
     Harl(/* args */);
     ~Harl();
 };
+
 typedef void (Harl::*select)(void);
 
 #ifndef CALL_MEMBER_FN
