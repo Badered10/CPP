@@ -17,7 +17,7 @@ int main(int ac, char **av)
     while (level != levels[i] && i < 4)
         i++;
     if (i == 4)
-        std::cout << "[ Probably complaining about insignificant problems ]" << std:: endl;
+       i = -1;
     while( i < 4 )
     {
         switch (i)
@@ -44,6 +44,7 @@ int main(int ac, char **av)
                 break;
             default:
                 std::cout << "[ Probably complaining about insignificant problems ]" << std:: endl;
+                i = 3;
                 break;
         }
         i++;
