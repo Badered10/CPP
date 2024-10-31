@@ -3,6 +3,7 @@
 
 #include <string>
 
+
 class Harl
 {
 private:
@@ -16,6 +17,10 @@ public:
     Harl(/* args */);
     ~Harl();
 };
+typedef void (Harl::*select)(void);
 
+#ifndef CALL_MEMBER_FN
+#define CALL_MEMBER_FN(ptrToObject, ptrToMember)  ((ptrToObject)->*(ptrToMember))()
+#endif
 
 #endif
