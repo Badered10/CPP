@@ -6,7 +6,7 @@ int main(int ac, char **av)
 {
     if (ac != 4)
     {
-        std::cout << "Args must be 3 , file_name and s1 , s2\n";
+        std::cout << "Args must be 4 , file_name and s1 , s2\n";
         return (1);
     }
 
