@@ -3,11 +3,7 @@
 #include <iostream>
 #include <string>
 
-HumanA::HumanA(std::string name , Weapon equipment)
-{
-    this->name = name;
-    this->equipment = equipment;
-}
+HumanA::HumanA(std::string name , Weapon &eq) : name(name), equipment(eq) {}
 
 HumanA::~HumanA()
 {

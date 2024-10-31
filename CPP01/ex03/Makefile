@@ -2,7 +2,7 @@ CC = c++
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
-NAME =  ex02
+NAME =  ex03
 
 SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 
