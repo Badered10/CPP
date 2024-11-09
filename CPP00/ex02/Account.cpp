@@ -131,14 +131,3 @@ void	Account::displayStatus( void ) const
             << "deposits:" << _nbDeposits << ";" 
             << "withdrawals:" << _nbWithdrawals << "\n";
 }
-
-// int main()
-// {
-    
-//     Account a1(100);
-//     Account a2(200);
-//     Account::displayAccountsInfos();
-//     a1.makeDeposit(12);
-//     a1.makeDeposit(23);
-//     Account::displayAccountsInfos();
-// }

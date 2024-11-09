@@ -19,38 +19,26 @@ int main(int ac, char **av)
     while (level != levels[i] && i < 4)
         i++;
 
-    if (i == 4)
-       i = -1;
-
-    while( i < 4 )
+    switch (i)
     {
-        switch (i)
-        {
-            case 0:
-                std::cout << "[ " << levels[i] << " ]" << std::endl;
-                harly.complain(levels[i]);
-                std::cout << std::endl;
-                break;
-            case 1:
-                std::cout << "[ " << levels[i] << " ]" << std::endl;
-                harly.complain(levels[i]);
-                std::cout << std::endl;
-                break;
-            case 2:
-                std::cout << "[ " << levels[i] << " ]" << std::endl;
-                harly.complain(levels[i]);
-                std::cout << std::endl;
-                break;
-            case 3:
-                std::cout << "[ " << levels[i] << " ]" << std::endl;
-                harly.complain(levels[i]);
-                std::cout << std::endl;
-                break;
-            default:
-                std::cout << "[ Probably complaining about insignificant problems ]" << std:: endl;
-                i = 3;
-                break;
+        case 0 :
+            std::cout << "[ " << levels[0] << " ]" << std::endl;
+            harly.complain(levels[0]);
+            std::cout << std::endl;
+        case 1 :
+            std::cout << "[ " << levels[1] << " ]" << std::endl;
+            harly.complain(levels[1]);
+            std::cout << std::endl;
+        case 2 :
+            std::cout << "[ " << levels[2] << " ]" << std::endl;
+            harly.complain(levels[2]);
+            std::cout << std::endl;
+        case 3 :
+            std::cout << "[ " << levels[3] << " ]" << std::endl;
+            harly.complain(levels[3]);
+            std::cout << std::endl;
+            break;
+        default:
+            std::cout << "[ Probably complaining about insignificant problems ]" << std:: endl;
         }
-        i++;
-    }
 }

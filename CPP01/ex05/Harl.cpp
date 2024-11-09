@@ -31,7 +31,7 @@ void Harl::warning( void )
 }
 void Harl::error( void )
 {
-    std::cout   << "This is unacceptable! I want to speak to the manager now."
+    std::cout   << "This is unaCXXeptable! I want to speak to the manager now."
                 << std::endl;
 }
 
@@ -40,13 +40,10 @@ void Harl::complain( std::string level )
     std::string levels[] = { "DEBUG", "INFO", "WARNING", "ERROR" };
 
     select PtrsToMember[] = { &Harl::debug, &Harl::info, &Harl::warning, &Harl::error };
+    int i = 0;
 
-    for (int i = 0; i < 4 ; i++)
-    {
-        if (level == levels[i])
-        {
-            CALL_MEMBER_FN(this,PtrsToMember[i]);
-            return ;
-        }
-    }
+    for (; i < 4 ; i++);
+
+    if (level == levels[i])
+        CALL_MEMBER_FN(this,PtrsToMember[i]);
 }

@@ -5,6 +5,7 @@
 #include <string>
 #include <cctype>
 #include <iomanip>
+#include <cstdlib>
 
 
 bool    all_digits(char *str)
