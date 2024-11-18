@@ -3,7 +3,7 @@
 
 #include <string>
 
-class Contact // first name, last name, nickname, phone number, darkest secret
+class Contact
 {
 private:
     std::string infos[5];
