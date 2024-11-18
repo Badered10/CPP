@@ -1,7 +1,4 @@
-
-#include <vector>
 #include <iostream>
-#include <algorithm>
 #include <functional>
 #include "Account.hpp"
 #include <ctime>
@@ -34,15 +31,17 @@ void	Account::_displayTimestamp( void )
 {
     time_t now;
     time(&now);
-
     std::tm *local_time = std::localtime(&now);
 
     std::cout << "["
-            << now << "_"
-            << std::setfill('0') << std::setw(2) << local_time->tm_hour
-            << std::setfill('0') << std::setw(2) << local_time->tm_min
-            << std::setfill('0') << std::setw(2) << local_time->tm_sec
-            << "]";
+        << 1900 + local_time->tm_year 
+        << std::setfill('0') << std::setw(2) << local_time->tm_mon + 1 
+        << std::setfill('0') << std::setw(2) << local_time->tm_mday
+        << "_"
+        << std::setfill('0') << std::setw(2) << local_time->tm_hour
+        << std::setfill('0') << std::setw(2) << local_time->tm_min
+        << std::setfill('0') << std::setw(2) << local_time->tm_sec
+        << "]";
 }
 
 int		Account::checkAmount( void ) const
