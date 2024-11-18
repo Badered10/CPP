@@ -47,18 +47,9 @@ std::string get_input(std::string message)
 
 void    show_table(PhoneBook phone)
 {
-    std::cout   << std::setfill('_')  
-                << std::setw(4 * 10)
-                << "\n"
-                << std::setfill(' ')  
-                << "|" << std::setw(11) 
-                << "|" << std::setw(11) 
-                << "|" << std::setw(11) 
-                << "|" << std::setw(12) 
-                << "|" << "\n";
     for (int i = 0; phone.get_contact(i).get_element(0) != ""; i++)
     {
-        std::cout << "|" << i << std::setw(9) << "";
+        std::cout << i << std::setw(9) << "";
         for (int j = 0; j < 3; j++)
         {
             size_t len;
@@ -100,7 +91,7 @@ void    search(PhoneBook phone)
     if (num <= 7 && num >= 0)
         phone.get_contact(num).list_elements(ALL);
     else
-        std::cout << "Invlid index" << std::endl;
+        std::cout << "Index is out of range" << std::endl;
 }
 
 void    intractive_mode(void)
