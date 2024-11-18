@@ -3,9 +3,9 @@ CXX := c++
 
 CPPFLAGS := -Wall -Wextra -Werror -std=c++98 -fsanitize=address -g3
 
-NAME :=	phonebook
+NAME :=	Phonebook
 
-SRCS :=  phonebook.cpp
+SRCS :=  PhoneBook.cpp Contact.cpp main.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 

@@ -2,45 +2,21 @@
 #include <math.h>
 #include "Fixed.hpp"
 
+#include <iostream>
 int main( void ) 
 {
-// Fixed a;
-// Fixed b( a );
-// Fixed c;
-// c = b;
-// std::cout << a.getRawBits() << std::endl;
-// std::cout << b.getRawBits() << std::endl;
-// std::cout << c.getRawBits() << std::endl;
-
-Fixed   a(6.6f);
-// float param = 3.645;
-
-// float x = 3.1;
-// int   y = 4;
-
-
-std::cout << a << std::endl;
-// std::cout << y << std::endl;
-
-
-// int fixed_point;
-// // const int n_fractional_bits = 8;
-
-
-// // fixed_point = param << n_fractional_bits;
-
-// // std::cout << fixed_point << std::endl;
-
-// // fixed_point = fixed_point >> n_fractional_bits;
-// // std::cout << fixed_point << std::endl;
-
-
-// fixed_point = param * 256 ;
-
-// std::cout << fixed_point << std::endl;
-
-// fixed_point = fixed_point / (float)256;
-// std::cout << fixed_point << std::endl;
-
+Fixed a;
+Fixed const b( 10 );
+Fixed const c( 42.42f );
+Fixed const d( b );
+a = Fixed( 1234.4321f );
+std::cout << "a is " << a << std::endl;
+std::cout << "b is " << b << std::endl;
+std::cout << "c is " << c << std::endl;
+std::cout << "d is " << d << std::endl;
+std::cout << "a is " << a.toInt() << " as integer" << std::endl;
+std::cout << "b is " << b.toInt() << " as integer" << std::endl;
+std::cout << "c is " << c.toInt() << " as integer" << std::endl;
+std::cout << "d is " << d.toInt() << " as integer" << std::endl;
 return 0;
 }
