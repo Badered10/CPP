@@ -97,11 +97,11 @@ void    add(PhoneBook *phone)
 {
     Contact con;
 
-    con.add_element(get_input("Enter first name : "), Contact::FIRST_NAME);
-    con.add_element(get_input("Enter last name : "), Contact::LAST_NAME);
-    con.add_element(get_input("Enter nickname : "), Contact::NICKNAME);
-    con.add_element(get_number("Enter phone number : "), Contact::PHONE_NUMBER);
-    con.add_element(get_input("Enter darkest secret : "), Contact::DARKEST_SECRET);
+    con.add_element(get_input("Enter first name : "), 0);
+    con.add_element(get_input("Enter last name : "), 1);
+    con.add_element(get_input("Enter nickname : "), 2);
+    con.add_element(get_number("Enter phone number : "), 3);
+    con.add_element(get_input("Enter darkest secret : "), 4);
     phone->add_contact(con);
 }
 
@@ -110,7 +110,6 @@ void    search(PhoneBook phone, int max)
     std::string line;
     int         num;
 
-    std::cout << "ENTERD TO SEARCH\n";
     if (max == -1)
     {
         std::cout << "No contacts to show !\n Try to add one using ""ADD"" \n";
@@ -131,7 +130,7 @@ void    intractive_mode()
     PhoneBook phone;
     while (1)
     {
-        line = get_input("Enter :");
+        line = get_input("Phonebook $ ");
 
         if(!std::strcmp("ADD", line.c_str()))
             add(&phone);

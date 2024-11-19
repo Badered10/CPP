@@ -10,19 +10,19 @@ void        Contact::list_elements(int elements_num)
         str = get_element(i);
         switch (i)
         {
-            case FIRST_NAME:
+            case 0:
             std::cout << "First name: ";
             break;
-            case LAST_NAME:
+            case 1:
             std::cout << "Last name: ";
             break;
-            case NICKNAME:
+            case 2:
             std::cout << "Nickname: ";
             break;
-            case PHONE_NUMBER:
+            case 3:
             std::cout << "Phone number: ";
             break;
-            case DARKEST_SECRET:
+            case 4:
             std::cout << "Darkest secret: ";
             break;
         }
@@ -38,7 +38,7 @@ void Contact::add_element(std::string data, int pose)
 }
 std::string Contact::get_element(int pose)
 {
-    if (pose >= FIRST_NAME && pose <= DARKEST_SECRET)
+    if (pose >= 0 && pose <= 4)
         return (infos[pose]);
     return (NULL);
 }
