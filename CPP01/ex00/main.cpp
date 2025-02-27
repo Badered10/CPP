@@ -3,6 +3,8 @@
 int main()
 {
     Zombie *tmp = newZombie("heap zombie");
+    if (!tmp)
+        return (1);
 
     tmp->announce();
 

@@ -17,32 +17,33 @@ int get_max(PhoneBook phone)
     return (count - 1);
 }
 
-bool    all_printables(char *str)
+bool    all_printables(const char *str)
 {
     while (isprint(*str))
         str++;
     return (!(*str));
 }
 
-bool    all_digits(char *str)
+bool    all_spaces(const char *str)
+{
+    while (isspace(*str))
+        str++;
+    return (!(*str));
+}
+
+bool    all_digits(const char *str)
 {
     while (isdigit(*str))
         str++;
     return (!(*str));
 }
 
-bool    all_spaces(char *str)
-{
-    while (isspace(*str))
-        str++;
-    return (!(*str));
-}
 std::string get_number(std::string message)
 {
     std::string line;
     int count = 0;
 
-    while ((all_spaces((char *)line.c_str()) || !all_digits((char *)line.c_str())) || !all_printables((char *)line.c_str()))
+    while ((all_spaces(line.c_str()) || !all_printables(line.c_str())))
     {
         if (count >= 1)
             std::cout << "Bad input you must enter digits only\n"; 
@@ -58,7 +59,7 @@ std::string get_number(std::string message)
 std::string get_input(std::string message)
 {
     std::string line;
-    while (all_spaces((char *)line.c_str()) || !all_printables((char *)line.c_str()))
+    while (all_spaces(line.c_str()) || !all_printables(line.c_str()))
     {
         std::cout <<  message;
         std::getline(std::cin, line);
@@ -80,7 +81,7 @@ void    show_table(PhoneBook phone)
         {
             size_t len;
 
-            len = strlen(phone.get_contact(i).get_element(j).c_str());
+            len = phone.get_contact(i).get_element(j).length();
             if (len > 10)
             {
                 std::cout << "|" << phone.get_contact(i).get_element(j).substr(0, 9) << ".";
@@ -112,16 +113,24 @@ void    search(PhoneBook phone, int max)
 
     if (max == -1)
     {
-        std::cout << "No contacts to show !\n Try to add one using ""ADD"" \n";
+        std::cout << "No contacts to show !\n Try to add one using: \"ADD\"" " \n";
         return;
     }
     show_table(phone);
-    line = get_number("Enter index to see more details : ");
-    num = atoi(line.c_str());
-    if (num <= max && num >= 0)
-        phone.get_contact(num).list_elements(ALL);
-    else
-        std::cout << "Index is out of range\t range is [0-" << max << "]" << std::endl;
+    while (true)
+    {
+        while (all_spaces(line.c_str()) || !all_digits(line.c_str()))
+            line = get_number("Enter index to see more details : ");
+        num = atoi(line.c_str());
+        if (num <= max && num >= 0)
+        {
+            phone.get_contact(num).list_elements(ALL);
+            return ;
+        }
+        else
+            std::cout << "Index is out of range\t range is [0-" << max << "]" << std::endl;
+        line = "";
+    }
 }
 
 void    intractive_mode()
@@ -132,11 +141,11 @@ void    intractive_mode()
     {
         line = get_input("Phonebook $ ");
 
-        if(!std::strcmp("ADD", line.c_str()))
+        if("ADD" == line)
             add(&phone);
-        else if (!std::strcmp("SEARCH", line.c_str()))
+        else if ("SEARCH" == line)
             search(phone, get_max(phone));
-        else if (!std::strcmp("EXIT", line.c_str()))
+        else if ("EXIT" == line)
             break;
     }
 }

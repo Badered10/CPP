@@ -14,11 +14,11 @@
 
 class PhoneBook
 {
-private:
-    Contact contact[8];
-public:
-    void    add_contact(Contact new_contact);
-    Contact get_contact(int pose);
+    private:
+        Contact contact[8];
+    public:
+        void    add_contact(Contact new_contact);
+        Contact get_contact(int pose);
 };
 
 #endif
