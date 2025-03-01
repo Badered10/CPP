@@ -50,7 +50,7 @@ void ClapTrap::attack(const std::string& target)
     EnergyPoints--;
 }
 
-void ClapTrap::takeDamage(unsigned int amount)
+void ClapTrap::takeDamage(unsigned int  amount)
 {
     if (HitPoints == 0)
     {
@@ -65,31 +65,32 @@ void ClapTrap::takeDamage(unsigned int amount)
     }
     else
     {
-        HitPoints -= amount;
+        if (HitPoints > amount)
+            HitPoints -= amount;
+        else
+            HitPoints = 0;
         std::cout << "ClapTrap " << name << " takes " << amount << " damage and now has " << HitPoints << " HP left!" << std::endl;
     }
 }
 
 
-void ClapTrap::beRepaired(unsigned int amount)
+void ClapTrap::beRepaired(unsigned int amount) //base = hp = 10; D = hp =  100 ---> 
 {
     if (HitPoints == 0)
     {
         std::cout << "ClapTrap " << name << " cannot be repaired because he has already died on the field!" << std::endl;
         return;
     }
+
     if (EnergyPoints == 0)
     {
         std::cout << "ClapTrap " << name << " cannot be repaired because he's completely drained!" << std::endl;
         return;
     }
-
-    unsigned int res = amount;
-    if (HitPoints + amount > 10)
-        res = 10 - HitPoints;
-
-    HitPoints += res;
+    if (HitPoints + amount >= amount) // 4294967295 + 1
+        HitPoints += amount;
+    else
+        HitPoints = 4294967295;
     EnergyPoints--;
-
-    std::cout << "ClapTrap " << name << " repairs itself and gains " << res << " HP!" << std::endl;
+    std::cout << "ClapTrap " << name << " repairs itself and gains " << amount << " HP!" << std::endl;
 }

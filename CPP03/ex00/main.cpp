@@ -16,7 +16,7 @@ int main()
 
     std::cout << "\n--- HEALING TEST ---\n" << std::endl;
     naruto.beRepaired(3);  // Should work (HP = 8)
-    naruto.beRepaired(5);  // Should cap at 10 HP
+    // naruto.beRepaired(5);  // Should cap at 10 HP
 
     std::cout << "\n--- FINISHER MOVE ---\n" << std::endl;
     naruto.takeDamage(10); // Naruto should "die"
