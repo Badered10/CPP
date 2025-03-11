@@ -59,12 +59,16 @@ Fixed Fixed::operator-(const Fixed& obj)
 Fixed Fixed::operator*(const Fixed& obj)
 {
     Fixed res;
+    // std::cout << ((this->fixed_point * obj.fixed_point) >> n_fractional_bits) << "\n" ;
+    // std::cout << (int)((this->toFloat() * obj.toFloat()) * (1 << n_fractional_bits)) << "\n" ;
     res.fixed_point = (this->fixed_point * obj.fixed_point) >> n_fractional_bits;
     return (res);
 }
 Fixed Fixed::operator/(const Fixed& obj)
 {
     Fixed res;
+    // std::cout << ((this->fixed_point << n_fractional_bits) / obj.fixed_point) << "\n" ;
+    // std::cout << roundf((this->toFloat() / obj.toFloat() * (1 << n_fractional_bits))) << "\n" ;
     res.fixed_point = (this->fixed_point << n_fractional_bits) / obj.fixed_point;
     return (res);
 }
