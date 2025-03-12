@@ -11,7 +11,7 @@ ScavTrap::ScavTrap() : ClapTrap("Unnamed", 100, 50, 20)
     std::cout << "A random ScavTrap has been called for duty!" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &obj)
+ScavTrap::ScavTrap(const ScavTrap &obj) : ClapTrap(obj)
 {
     *this = obj;
     std::cout << "Kage Bunshin no Jutsu!!! ScavTrap clone named " << " has been called for duty!" << std::endl;
@@ -19,7 +19,7 @@ ScavTrap::ScavTrap(const ScavTrap &obj)
 
 ScavTrap::~ScavTrap()
 {
-    std::cout << "ScavTrap named " << " has died with honor. RIP!" << std::endl;
+    std::cout << "ScavTrap named " << name << " has died with honor. RIP!" << std::endl;
 }
 
 ScavTrap& ScavTrap::operator=(const ScavTrap& obj)
@@ -32,4 +32,9 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& obj)
         this->AttackDamage =  obj.AttackDamage;
     }
     return (*this);
+}
+
+void ScavTrap::guardGate()
+{
+    std::cout << "ScavTrap named " << name << " actvite guardGate !!" << std::endl;
 }
