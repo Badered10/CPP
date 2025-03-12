@@ -1,11 +1,11 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-    ScavTrap T("HELL");
+    FragTrap T("Frag");
 
     std::cout << T.getEP() << std::endl;
-    T.guardGate();
+    T.highFivesGuys();
     std::cout << T.getEP() << std::endl;
     T.attack("ENEMY");
     std::cout << T.getEP() << std::endl;
