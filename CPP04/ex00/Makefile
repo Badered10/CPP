@@ -3,10 +3,9 @@ CXX = c++
 
 CXXFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = FragTrap
+NAME = DeepCopy
 
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
-
+SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME) clean

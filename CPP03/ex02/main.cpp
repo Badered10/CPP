@@ -4,6 +4,8 @@ int main()
 {
     FragTrap T("Frag");
 
+    std::cout << T.getName() << " " << T.getHP() << " " << T.getEP() << " " <<  T.getAD() << std::endl;
+
     std::cout << T.getEP() << std::endl;
     T.highFivesGuys();
     std::cout << T.getEP() << std::endl;

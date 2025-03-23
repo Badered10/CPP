@@ -1,12 +1,11 @@
 
 CXX = c++
 
-CXXFLAGS = -Wall -Wextra -Werror -std=c++98
+CXXFLAGS = -Wall -Wextra -Werror -std=c++98 #-fsanitize=address
 
-NAME = FragTrap
+NAME = 
 
-SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
-
+SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME) clean

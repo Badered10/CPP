@@ -15,20 +15,19 @@ int main()
     naruto.takeDamage(5);
 
     std::cout << "\n--- HEALING TEST ---\n" << std::endl;
-    naruto.beRepaired(3);  // Should work (HP = 8)
-    // naruto.beRepaired(5);  // Should cap at 10 HP
+    naruto.beRepaired(3);
 
     std::cout << "\n--- FINISHER MOVE ---\n" << std::endl;
-    naruto.takeDamage(10); // Naruto should "die"
-    naruto.attack("Saske"); // Should not work
-    naruto.beRepaired(5); // Should not work
+    naruto.takeDamage(10);
+    naruto.attack("Saske");
+    naruto.beRepaired(5);
 
     std::cout << "\n--- ENERGY DRAIN TEST ---\n" << std::endl;
-    for (int i = 0; i < 10; i++) // Drain energy completely
+    for (int i = 0; i < 10; i++)
         saske.attack("Naruto");
 
-    saske.attack("Naruto"); // Should fail (0 energy)
-    saske.beRepaired(2); // Should fail (0 energy)
+    saske.attack("Naruto");
+    saske.beRepaired(2);
 
     std::cout << "\n--- END OF TESTS ---\n" << std::endl;
 }
