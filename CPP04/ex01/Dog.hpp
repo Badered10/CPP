@@ -17,7 +17,6 @@ class Dog : public Animal
         Brain *getBrain() const;
         void setBrain(Brain *brain);
         void makeSound() const;
-
 };
 
 #endif
