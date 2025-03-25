@@ -1,21 +1,12 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name)
+DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name + "_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
 {
-    this->_name = name;
-
-    this->HitPoints = FragTrap::HitPoints;
-    this->EnergyPoints = ScavTrap::EnergyPoints;
-    this->AttackDamage = ScavTrap::AttackDamage;
     std::cout << "DiamondTrap named " << _name << " has been called for duty!" << std::endl;
-}
+}   
 
-DiamondTrap::DiamondTrap() : ClapTrap((std::string)"Unnamed" + "_clap_name"), ScavTrap("Unnamed"), FragTrap("Unnamed")
+DiamondTrap::DiamondTrap() : ClapTrap((std::string)"Unnamed" + "_clap_name"), ScavTrap("Unnamed"), FragTrap("Unnamed"), _name("Unnamed")
 {
-    this->_name = "Unnamed";
-    this->HitPoints = FragTrap::HitPoints;
-    this->EnergyPoints = ScavTrap::EnergyPoints;
-    this->AttackDamage = ScavTrap::AttackDamage;
     std::cout << "A random DiamondTrap has been called for duty!" << std::endl;
 }
 

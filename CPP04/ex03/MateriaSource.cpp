@@ -1,4 +1,5 @@
 # include "MateriaSource.hpp"
+# include "garbge.hpp"
 
 MateriaSource::MateriaSource()
 {
@@ -11,7 +12,8 @@ MateriaSource::MateriaSource(const MateriaSource &other)
 }
 MateriaSource::~MateriaSource()
 {
-
+    for (int i = 0; i < 4 ; i++)
+        delete materias[i];
 }
 
 MateriaSource &MateriaSource::operator=(const MateriaSource &other)
@@ -21,6 +23,7 @@ MateriaSource &MateriaSource::operator=(const MateriaSource &other)
         for (int i = 0; i < 4 ; i++)
             materias[i] = other.materias[i];
     }
+    return (*this);
 }
 
 void MateriaSource::learnMateria(AMateria* materia)
@@ -29,17 +32,21 @@ void MateriaSource::learnMateria(AMateria* materia)
     {
         if (materias[i] == NULL)
         {
-            materias[i] = materia;
+            materias[i] = materia->clone();
             break;
         }
     }
+    delete materia;
 }
 AMateria* MateriaSource::createMateria(std::string const & type)
 {
     for (int i = 0; i < 4; i++)
     {
         if (materias[i]->getType() == type)
-            return materias[i]->clone();
+        {
+            AMateria *tmp = materias[i]->clone();
+            return tmp;
+        }
     }
     return NULL;
 }

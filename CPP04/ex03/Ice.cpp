@@ -14,7 +14,7 @@ Ice &Ice::operator=(const Ice &Ice)
 
 AMateria *Ice::clone() const 
 {
-    return new Ice(*this);
+   return new Ice(*this);
 }
 
 void Ice::use(ICharacter &target) 

@@ -4,6 +4,7 @@
 FragTrap::FragTrap(std::string name) : ClapTrap(name, 100, 100, 30)
 {
     this->HitPoints = 100;
+    this->AttackDamage = 30;
     std::cout << "FragTrap named " << this->name << " has been called for duty!" << std::endl;
 }
 

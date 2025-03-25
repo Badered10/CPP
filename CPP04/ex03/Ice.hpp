@@ -4,6 +4,7 @@
 # include <iostream>
 # include "AMateria.hpp"
 # include "ICharacter.hpp"
+# include "garbge.hpp"
 
 class Ice : public AMateria
 {

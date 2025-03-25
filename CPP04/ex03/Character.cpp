@@ -19,7 +19,12 @@ Character::Character(const Character &other)
 
 Character::~Character()
 {
-    // remove list of unequiped materias 
+    for(int i = 0; i < 4 ; i++)
+    {
+        if (inventory[i] != NULL)
+            delete inventory[i];
+    }
+    // remove list of unequiped materias
 }
 
 Character &Character::operator=(const Character &other)
@@ -53,6 +58,7 @@ void Character::equip(AMateria* m)
             return ;
         }
     }
+    // Drop on the floor
 }
 
 void Character::unequip(int idx) 
@@ -62,7 +68,8 @@ void Character::unequip(int idx)
     if (inventory[idx] == NULL)
         return;
     // Drop on the floor
-    inventory[idx] == NULL;
+    
+    inventory[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) 
