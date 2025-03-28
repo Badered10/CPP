@@ -13,6 +13,7 @@ class Dog : public Animal
         Dog();
         Dog(const Dog &dog);
         ~Dog();
+        
         Dog &operator=(const Dog &dog);
     
         Brain *getBrain() const;

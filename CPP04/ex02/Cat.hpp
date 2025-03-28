@@ -12,8 +12,10 @@ class Cat : public Animal
     public:
         Cat();
         Cat(const Cat &other);
+        ~Cat();
+
         Cat &operator=(const Cat &other);
-        virtual ~Cat();
+
         Brain *getBrain() const;
         void setBrain(Brain *brain);
         void makeSound() const;

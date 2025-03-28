@@ -3,13 +3,14 @@
 
 #include "ICharacter.hpp"
 # include "AMateria.hpp"
-# include "garbge.hpp"
+# include "Garbge.hpp"
 
 class Character : public ICharacter
 {
     private:
         std::string name;
         AMateria *inventory[4];
+        static Garbge *grave;
     public:
         Character();
         Character(std::string name);
@@ -22,6 +23,7 @@ class Character : public ICharacter
         void equip(AMateria* m);
         void unequip(int idx);
         void use(int idx, ICharacter& target);
+        static void clean_grave(void);
 };
 
 

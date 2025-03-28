@@ -2,12 +2,11 @@
 # define MATERIASOURCE_HPP
 
 # include "IMateriaSource.hpp"
-#include "garbge.hpp"
 
 class MateriaSource : public IMateriaSource
 {
     private:
-        AMateria *materias[4];
+        AMateria *slots[4];
     public:
         MateriaSource();
         MateriaSource(const MateriaSource &other);

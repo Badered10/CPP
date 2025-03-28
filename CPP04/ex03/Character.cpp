@@ -1,13 +1,17 @@
 #include "Character.hpp"
 
+Garbge* Character::grave = new Garbge();
+
 Character::Character() : name("Unnamed")
 {
+    std::cout << "Unnamed Character has being respawn !" << std::endl;
     for (int i = 0; i < 4; i++)
         inventory[i] = NULL;
 }
 
 Character::Character(std::string name) : name(name)
 {
+    std::cout << name << " has being respawn !" << std::endl;
     for (int i = 0; i < 4; i++)
         inventory[i] = NULL;
 }
@@ -19,12 +23,12 @@ Character::Character(const Character &other)
 
 Character::~Character()
 {
-    for(int i = 0; i < 4 ; i++)
-    {
-        if (inventory[i] != NULL)
-            delete inventory[i];
-    }
-    // remove list of unequiped materias
+    std::cout << name << " has being destroyed !" << std::endl;
+}
+
+void Character::clean_grave(void)
+{
+    grave->delet_garbge(grave);
 }
 
 Character &Character::operator=(const Character &other)
@@ -50,33 +54,52 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m) 
 {
+    if (!m)
+    {
+        std::cout << name << " cannot equip a vide Materia" << std::endl;
+        return;
+    }
+    grave->add_front(&grave, m);
     for (int i = 0; i < 4; i++)
     {
         if (inventory[i] == NULL)
         {
             inventory[i] = m;
+            std::cout << name << " equiped new Materia of type : " << m->getType() << std::endl;
             return ;
         }
     }
-    // Drop on the floor
+    std::cout << name << " cannot equip new Materia ! Inventory is full." << std::endl;
 }
 
 void Character::unequip(int idx) 
 {
-    if (idx < 0 || idx > 4)
+    if (idx < 0 || idx > 3)
+    {
+        std::cout << name << " cannot unequip a Materia ! Invalid index at [" << idx << "]." << std::endl;
         return;
+    }
     if (inventory[idx] == NULL)
+    {
+        std::cout << name << " cannot unequip a Materia ! Materia already unequiped." << std::endl;
         return;
-    // Drop on the floor
-    
+    }
+    grave->add_front(&grave, inventory[idx]);
     inventory[idx] = NULL;
+    std::cout << name << " unequiped the Materia at index :[" << idx << "]!" << std::endl;
 }
 
-void Character::use(int idx, ICharacter& target) 
+void Character::use(int idx, ICharacter& target)
 {
-    if (idx < 0 || idx > 4)
+    if (idx < 0 || idx > 3)
+    {
+        std::cout << name << " cannot use a Materia ! Invalid index at [" << idx << "]."  << std::endl;
         return;
-    if (inventory[idx] == NULL)
+    }
+    if (inventory[idx] == NULL)    
+    {
+        std::cout << name << " cannot use a Materia ! Inventory slot is vide at [" << idx << "]." << std::endl;
         return;
+    }
     inventory[idx]->use(target);
 }
