@@ -38,12 +38,11 @@ void Brain::setIdea(const std::string &idea)
     }
 }
 
-std::string Brain::getIdea() const
+std::string Brain::getIdea(int idx) const
 {
-    for (int i = 0; i < 100; i++)
-    {
-        if (!ideas[i].empty())
-            return (ideas[i]);
-    }
+    if (idx < 0 || idx >= 100)
+        return ("");
+    if (!ideas[idx].empty())
+        return (ideas[idx]);
     return ("");
 }

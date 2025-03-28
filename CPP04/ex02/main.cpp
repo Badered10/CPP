@@ -14,13 +14,21 @@ int main()
        Cat copycatA = catA;
        Dog DogA;
        Dog copyDogA = DogA;
-
-
     
        DogA = copyDogA;
-       DogA = copyDogA;
 
-    
+        std::cout << "------------------------Brains test-------------------------" << std::endl;
+        catA.getBrain()->setIdea("I am a cat");
+        catA.getBrain()->setIdea("meaow");
+        DogA.getBrain()->setIdea("I am a dog");
+        DogA.getBrain()->setIdea("bark");
+
+        std::cout << "catA brain idea: " << catA.getBrain()->getIdea(0) << std::endl;
+        std::cout << "catA brain idea: " << catA.getBrain()->getIdea(1) << std::endl;
+
+        std::cout << "DogA brain idea: " << DogA.getBrain()->getIdea(0) << std::endl;
+        std::cout << "DogA brain idea: " << DogA.getBrain()->getIdea(1) << std::endl;
+
         std::cout << "------------------------Deep Copy-------------------------" << std::endl;
     
         std::cout << "copy brain address: " << catA.getBrain() << std::endl;
@@ -29,6 +37,9 @@ int main()
     
         std::cout << "copy brain address: " << DogA.getBrain() << std::endl;
         std::cout << "original brain address: " << copyDogA.getBrain() << std::endl;
+
+        std::cout << "copyDogA brain idea: " << copyDogA.getBrain()->getIdea(0) << std::endl;
+        std::cout << "copyDogA brain idea: " << copyDogA.getBrain()->getIdea(1) << std::endl;
     
     
         std::cout << "------------------------Fill Array-------------------------" << std::endl;

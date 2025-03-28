@@ -2,7 +2,7 @@
 #include "Cat.hpp"
 #include "WrongCat.hpp"
 
-int main()
+int main() // zid
 {
     const Animal* meta = new Animal();
     const WrongAnimal* beta = new WrongAnimal();

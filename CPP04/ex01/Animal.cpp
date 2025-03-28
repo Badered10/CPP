@@ -24,13 +24,13 @@ Animal &Animal::operator=(const Animal &other)
 {
     if (this == &other)
         return (*this);
-    this->type = other.type;
+    type = other.type;
     return (*this);
 }
 
 std::string Animal::getType() const
 {
-    return (this->type);
+    return (type);
 }
 
 void Animal::makeSound() const
